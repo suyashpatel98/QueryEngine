@@ -26,4 +26,16 @@ public class Column extends LogicalExpr {
     public String toString() {
         return "#" + name;
     }
+
+    public static Column col(String name) {
+        return new Column(name);
+    }
+
+    public Eq eq(LiteralString co) {
+        return Eq.eq(this, co);
+    }
+
+    public Gt gt(LiteralLong lit) {
+        return Gt.gt(this, lit);
+    }
 }

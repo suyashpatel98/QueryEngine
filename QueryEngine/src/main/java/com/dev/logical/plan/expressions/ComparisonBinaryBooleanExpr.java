@@ -2,17 +2,9 @@ package com.dev.logical.plan.expressions;
 
 import com.dev.logical.plan.LogicalExpr;
 
-class And extends BooleanBinaryExpr {
-    And(LogicalExpr l, LogicalExpr r) {
-        super("and", "AND", l, r);
-    }
-}
 
-class Or extends BooleanBinaryExpr {
-    Or(LogicalExpr l, LogicalExpr r) {
-        super("or", "OR", l, r);
-    }
-}
+
+
 
 
 
@@ -22,11 +14,7 @@ class Neq extends BooleanBinaryExpr {
     }
 }
 
-class Gt extends BooleanBinaryExpr {
-    Gt(LogicalExpr l, LogicalExpr r) {
-        super("gt", ">", l, r);
-    }
-}
+
 
 class GtEq extends BooleanBinaryExpr {
     GtEq(LogicalExpr l, LogicalExpr r) {

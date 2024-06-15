@@ -21,4 +21,8 @@ class LiteralLong extends LogicalExpr {
     public String toString() {
         return Long.toString(n);
     }
+
+    public static LiteralLong lit(long value) {
+        return new LiteralLong(value);
+    }
 }

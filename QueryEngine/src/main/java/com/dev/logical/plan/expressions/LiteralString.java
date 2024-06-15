@@ -21,4 +21,12 @@ public class LiteralString extends LogicalExpr {
     public String toString() {
         return "'" + str + "'";
     }
+
+    public static LiteralString litString(String value) {
+        return new LiteralString(value);
+    }
+
+    public static LiteralLong litLong(Long value) {
+        return new LiteralLong(value);
+    }
 }

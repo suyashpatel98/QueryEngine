@@ -2,24 +2,22 @@ package com.dev;
 
 import com.dev.datasource.InMemoryDataSource;
 import com.dev.datatypes.*;
-import com.dev.logical.plan.LogicalExpr;
-import com.dev.logical.plan.Projection;
-import com.dev.logical.plan.Scan;
-import com.dev.logical.plan.Selection;
+import com.dev.execution.ExecutionContext;
+import com.dev.logical.plan.*;
 import com.dev.logical.plan.expressions.Column;
 import com.dev.logical.plan.expressions.Eq;
 import com.dev.logical.plan.expressions.LiteralString;
-import com.sun.jdi.DoubleType;
 import org.apache.arrow.vector.*;
 import org.apache.arrow.vector.types.pojo.ArrowType;
 
-import java.beans.Expression;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import static com.dev.datatypes.ArrowTypes.StringType;
 import static com.dev.logical.plan.LogicalPlan.format;
+import static com.dev.logical.plan.expressions.Column.col;
+import static com.dev.logical.plan.expressions.LiteralString.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -91,5 +89,38 @@ public class Main {
 
         // print the plan
         System.out.println(format(plan));
+        /**Prints out the following:
+         * Projection: #id, #first_name, #last_name, #state, #salary
+         * 	Selection: #state = 'CO'
+         * 		Scan: employee; projection=None
+         */
+
+        ExecutionContext ctx = new ExecutionContext();
+
+        DataFrame dataFramePlan = ctx.inMemory()
+                .filter(new Eq(new Column("state"), new LiteralString("CO")))
+                .project(Arrays.asList(
+                        new Column("id"),
+                        new Column("first_name"),
+                        new Column("last_name"),
+                        new Column("state"),
+                        new Column("salary")));
+
+        DataFrame df = ctx.inMemory()
+                .filter(col("state").eq(litString("CO")))
+                .project(Arrays.asList(
+                        col("id"),
+                        col("first_name"),
+                        col("last_name"),
+                        col("salary"),
+                        col("salary")))
+                .filter(col("bonus").gt(litLong(1000L)));
+        System.out.println(df.logicalPlan().pretty());
+        /**Prints out the following:
+         * Selection: #bonus > 1000
+         * 	Projection: #id, #first_name, #last_name, #salary, #salary
+         * 		Selection: #state = 'CO'
+         * 			Scan: ; projection=None
+         */
     }
 }
