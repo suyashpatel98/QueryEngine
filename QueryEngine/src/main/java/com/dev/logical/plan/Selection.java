@@ -8,6 +8,14 @@ public class Selection implements LogicalPlan {
     private final LogicalPlan input;
     private final LogicalExpr expr;
 
+    public LogicalPlan getInput() {
+        return input;
+    }
+
+    public LogicalExpr getExpr() {
+        return expr;
+    }
+
     public Selection(LogicalPlan input, LogicalExpr expr) {
         this.input = input;
         this.expr = expr;

@@ -6,11 +6,11 @@ import org.apache.arrow.vector.*;
 public class ArrowVectorBuilder {
     private final FieldVector fieldVector;
 
-    ArrowVectorBuilder(FieldVector fieldVector) {
+    public ArrowVectorBuilder(FieldVector fieldVector) {
         this.fieldVector = fieldVector;
     }
 
-    void set(int i, Object value) {
+    public void set(int i, Object value) {
         if (fieldVector instanceof VarCharVector) {
             VarCharVector varCharVector = (VarCharVector) fieldVector;
             if (value == null) {

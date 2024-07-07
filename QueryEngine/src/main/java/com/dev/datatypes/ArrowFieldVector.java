@@ -15,6 +15,10 @@ public class ArrowFieldVector implements ColumnVector {
         this.field = field;
     }
 
+    public FieldVector getField() {
+        return field;
+    }
+
     @Override
     public ArrowType getType() {
         if (field instanceof BitVector) {

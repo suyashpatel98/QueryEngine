@@ -16,6 +16,22 @@ public abstract class BinaryExpr extends LogicalExpr {
         this.r = r;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public String getOp() {
+        return op;
+    }
+
+    public LogicalExpr getL() {
+        return l;
+    }
+
+    public LogicalExpr getR() {
+        return r;
+    }
+
     @Override
     public String toString() {
 

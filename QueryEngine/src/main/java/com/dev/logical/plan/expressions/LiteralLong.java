@@ -5,7 +5,7 @@ import com.dev.datatypes.Field;
 import com.dev.logical.plan.LogicalExpr;
 import com.dev.logical.plan.LogicalPlan;
 
-class LiteralLong extends LogicalExpr {
+public class LiteralLong extends LogicalExpr {
     private final long n;
 
     LiteralLong(long n) {
@@ -20,6 +20,10 @@ class LiteralLong extends LogicalExpr {
     @Override
     public String toString() {
         return Long.toString(n);
+    }
+
+    public long getN() {
+        return n;
     }
 
     public static LiteralLong lit(long value) {

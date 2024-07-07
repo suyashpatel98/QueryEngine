@@ -45,4 +45,20 @@ public class Scan implements LogicalPlan {
             return "Scan: " + path + "; projection=" + projection;
         }
     }
+
+    public String getPath() {
+        return path;
+    }
+
+    public DataSource getDataSource() {
+        return dataSource;
+    }
+
+    public List<String> getProjection() {
+        return projection;
+    }
+
+    public Schema getSchema() {
+        return schema;
+    }
 }

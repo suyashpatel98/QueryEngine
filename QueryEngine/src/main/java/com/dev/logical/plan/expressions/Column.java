@@ -14,6 +14,10 @@ public class Column extends LogicalExpr {
         this.name = name;
     }
 
+    public String getName() {
+        return name;
+    }
+
     @Override
     public Field toField(LogicalPlan input) throws SQLException {
         return input.schema().getFields().stream()

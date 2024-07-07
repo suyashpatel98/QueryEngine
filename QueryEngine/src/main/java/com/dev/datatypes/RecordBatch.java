@@ -19,6 +19,18 @@ public class RecordBatch {
         return fields.size();
     }
 
+    public Schema getSchema() {
+        return schema;
+    }
+
+    public List<ColumnVector> getFields() {
+        return fields;
+    }
+
+    public ColumnVector getField(int i) {
+        return fields.get(i);
+    }
+
     /** Access one column by index */
     public ColumnVector field(int i) {
         return fields.get(i);

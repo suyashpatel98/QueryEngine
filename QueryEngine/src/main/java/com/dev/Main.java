@@ -21,6 +21,10 @@ import static com.dev.logical.plan.expressions.LiteralString.*;
 
 public class Main {
     public static void main(String[] args) {
+        workingWithLogicalPlans();
+    }
+
+    private static void workingWithLogicalPlans() {
         List<String> columnNames = List.of("id", "first_name", "last_name", "state", "job_title", "salary");
 
         List<ArrowType> columnTypes = List.of(
