@@ -79,6 +79,13 @@ public class ArrowFieldVector implements ColumnVector {
     }
 
     @Override
+    public String toString() {
+        return "ArrowFieldVector{" +
+                "field=" + field.toString() +
+                '}';
+    }
+
+    @Override
     public int size() {
         return field.getValueCount();
     }

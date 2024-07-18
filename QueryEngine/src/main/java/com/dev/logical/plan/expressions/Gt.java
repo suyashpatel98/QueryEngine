@@ -2,8 +2,8 @@ package com.dev.logical.plan.expressions;
 
 import com.dev.logical.plan.LogicalExpr;
 
-class Gt extends BooleanBinaryExpr {
-    Gt(LogicalExpr l, LogicalExpr r) {
+public class Gt extends BooleanBinaryExpr {
+    public Gt(LogicalExpr l, LogicalExpr r) {
         super("gt", ">", l, r);
     }
 

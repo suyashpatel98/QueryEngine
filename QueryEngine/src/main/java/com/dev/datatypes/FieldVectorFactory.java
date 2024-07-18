@@ -18,7 +18,7 @@ public class FieldVectorFactory {
         } else if (arrowType.equals(ArrowTypes.Int32Type)) {
             fieldVector = new IntVector("v", rootAllocator);
         } else if (arrowType.equals(ArrowTypes.Int64Type)) {
-            fieldVector = new BigIntVector("v", rootAllocator);
+            fieldVector = new IntVector("v", rootAllocator);
         } else if (arrowType.equals(ArrowTypes.FloatType)) {
             fieldVector = new Float4Vector("v", rootAllocator);
         } else if (arrowType.equals(ArrowTypes.DoubleType)) {

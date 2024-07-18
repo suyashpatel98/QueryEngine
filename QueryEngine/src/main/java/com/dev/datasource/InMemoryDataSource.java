@@ -87,6 +87,9 @@ public class InMemoryDataSource implements DataSource {
                         .findFirst()
                         .orElseThrow(() -> new IllegalArgumentException("No column named '" + name + "'")))
                 .collect(Collectors.toList());
+        if(projection.isEmpty()) {
+            return data;
+        }
 
         return data.stream()
                 .map(batch -> {

@@ -64,6 +64,8 @@ public class QueryPlanner {
 
             if (expr instanceof Eq) return new EqExpression(l, r);
             else throw new IllegalStateException("Unsupported binary expression: " + expr);
+        } else if (expr instanceof LiteralInt) {
+            return new LiteralIntExpression(((LiteralInt) expr).getN());
         }
 
         throw new IllegalStateException("Unsupported logical expression: " + expr);

@@ -5,10 +5,10 @@ import com.dev.datatypes.Field;
 import com.dev.logical.plan.LogicalExpr;
 import com.dev.logical.plan.LogicalPlan;
 
-public class LiteralLong extends LogicalExpr {
-    private final long n;
+public class LiteralInt extends LogicalExpr {
+    private final int n;
 
-    public LiteralLong(long n) {
+    public LiteralInt(int n) {
         this.n = n;
     }
 
@@ -22,11 +22,11 @@ public class LiteralLong extends LogicalExpr {
         return Long.toString(n);
     }
 
-    public long getN() {
+    public int getN() {
         return n;
     }
 
-    public static LiteralLong lit(long value) {
-        return new LiteralLong(value);
+    public static LiteralInt lit(int value) {
+        return new LiteralInt(value);
     }
 }

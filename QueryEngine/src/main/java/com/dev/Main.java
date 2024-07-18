@@ -4,9 +4,7 @@ import com.dev.datasource.InMemoryDataSource;
 import com.dev.datatypes.*;
 import com.dev.execution.ExecutionContext;
 import com.dev.logical.plan.*;
-import com.dev.logical.plan.expressions.Column;
-import com.dev.logical.plan.expressions.Eq;
-import com.dev.logical.plan.expressions.LiteralString;
+import com.dev.logical.plan.expressions.*;
 import org.apache.arrow.vector.*;
 import org.apache.arrow.vector.types.pojo.ArrowType;
 
@@ -48,7 +46,7 @@ public class Main {
             ColumnVector columnVector = new ArrowFieldVector(vector);
 
             // Populate the vector with data
-            if (type.equals(ArrowTypes.Int32Type)) {
+            if (type.equals(ArrowTypes.Int32Type) || type.equals(ArrowTypes.Int64Type)) {
                 IntVector intVector = (IntVector) vector;
                 intVector.setSafe(0, 1);
                 intVector.setSafe(1, 2);
@@ -92,7 +90,7 @@ public class Main {
         Projection plan = new Projection(selection, projectionList);
 
         // print the plan
-        System.out.println(format(plan));
+        // System.out.println(format(plan));
         /**Prints out the following:
          * Projection: #id, #first_name, #last_name, #state, #salary
          * 	Selection: #state = 'CO'
@@ -102,7 +100,7 @@ public class Main {
         ExecutionContext ctx = new ExecutionContext();
 
         DataFrame dataFramePlan = ctx.inMemory()
-                .filter(new Eq(new Column("state"), new LiteralString("CO")))
+                .filter(new Eq(new Column("first_name"), new LiteralString("John")))
                 .project(Arrays.asList(
                         new Column("id"),
                         new Column("first_name"),
@@ -111,20 +109,24 @@ public class Main {
                         new Column("salary")));
 
         DataFrame df = ctx.inMemory()
-                .filter(col("state").eq(litString("CO")))
                 .project(Arrays.asList(
                         col("id"),
                         col("first_name"),
                         col("last_name"),
                         col("salary"),
                         col("salary")))
-                .filter(col("bonus").gt(litLong(1000L)));
-        System.out.println(df.logicalPlan().pretty());
+                .filter(col("id").gt(litLong(0L)));
+        // System.out.println(df.logicalPlan().pretty());
         /**Prints out the following:
-         * Selection: #bonus > 1000
          * 	Projection: #id, #first_name, #last_name, #salary, #salary
          * 		Selection: #state = 'CO'
          * 			Scan: ; projection=None
          */
+        df = ctx.inMemory()
+                .filter(new Eq(new Column("id"), new LiteralInt(1)));
+        Iterable<RecordBatch> results = ctx.execute(df.logicalPlan());
+        for(RecordBatch recordBatch: results) {
+            System.out.println(recordBatch.toString());
+        }
     }
 }
