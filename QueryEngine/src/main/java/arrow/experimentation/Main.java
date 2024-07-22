@@ -31,7 +31,7 @@ class WithArrow implements Runnable {
     @Override
     public void run() {
         long startTime = System.currentTimeMillis();
-        String csvFile = "/Users/suyash/Desktop/work/reference/Java/query_engine/QueryEngine/src/main/java/org/example/data.arrow"; // Assuming the Arrow file format
+        String csvFile = "/Users/suyash/Desktop/work/reference/Java/query_engine/QueryEngine/src/main/java/arrow/experimentation/data.arrow"; // Assuming the Arrow file format
 
         try (BufferAllocator allocator = new RootAllocator(Long.MAX_VALUE);
              FileChannel fileChannel = FileChannel.open(Paths.get(csvFile), StandardOpenOption.READ);
@@ -70,7 +70,7 @@ class WithoutArrow implements Runnable {
     @Override
     public void run() {
         long startTime = System.currentTimeMillis();
-        String csvFile = "/Users/suyash/Desktop/work/reference/Java/query_engine/QueryEngine/src/main/java/org/example/data.csv";
+        String csvFile = "/Users/suyash/Desktop/work/reference/Java/query_engine/QueryEngine/src/main/java/arrow/experimentation/data.csv";
         List<Double> scores = new ArrayList<>();
 
         try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
