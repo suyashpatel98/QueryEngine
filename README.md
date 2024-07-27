@@ -1,7 +1,7 @@
 # TrivialDB: Single-node OLAP solution.
 
 ## Introduction:
-Often you come across datasets that don't require a massive Spark cluster (which comes with the overhead of managing a distributed system). Wouldn't it be great to be able to process these datasets using the same DataFrame API you are familiar with on a single node? Introducing TrivialDB (based on Apache Calcite and Apache Arrow) to replace expensive Spark clusters
+In many cases, datasets don't require the scale of a massive Spark cluster, which comes with the complexities of managing a distributed system. TrivialDB offers a solution by allowing you to process these datasets on a single node using the familiar DataFrame API. Built on Apache Calcite and Apache Arrow, TrivialDB is designed to replace expensive Spark clusters while maintaining efficient and effective data processing capabilities.
 
 ## Design:
 
